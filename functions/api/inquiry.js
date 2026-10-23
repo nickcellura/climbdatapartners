@@ -1,5 +1,5 @@
 const industries = ['Manufacturing','Distribution','Equipment rental','Logistics','Professional services','Other B2B business','Other'];
-const employees = ['Under 30','30–99','100–299','300–999','1,000+'];
+const employees = ['Under 20','20–99','100–299','300–999','1,000+'];
 const years = ['Under 5','5–9','10–19','20+'];
 const reply = (status, body) => Response.json(body,{status,headers:{'Cache-Control':'no-store'}});
 export async function onRequestPost({request,env}) {

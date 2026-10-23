@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {onRequestPost} from '../functions/api/inquiry.js';
-const base = {fullName:'Jane Smith',email:'jane@example.com',company:'Example Operations',industry:'Manufacturing',employees:'30–99',years:'10–19',records:'Production histories',consent:'on',startedAt:Date.now()-10000,'cf-turnstile-response':'test-token'};
+const base = {fullName:'Jane Smith',email:'jane@example.com',company:'Example Operations',industry:'Manufacturing',employees:'20–99',years:'10–19',records:'Production histories',consent:'on',startedAt:Date.now()-10000,'cf-turnstile-response':'test-token'};
 const env = {RESEND_API_KEY:'test-key',INQUIRY_TO_EMAIL:'owner@example.com',INQUIRY_FROM_EMAIL:'inquiries@example.com',TURNSTILE_SECRET_KEY:'test-secret',TURNSTILE_SITE_KEY:'test-public'};
 const run = (data=base,settings=env,origin='https://example.com') => onRequestPost({request:new Request('https://example.com/api/inquiry',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify(data)}),env:settings});
 test('rejects submissions from another origin',async()=>assert.equal((await run(base,env,'https://other.com')).status,403));
